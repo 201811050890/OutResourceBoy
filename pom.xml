@@ -5,6 +5,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>opLog</module>
+        <module>sqlBlood</module>
+        <module>my-login</module>
+
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,6 +26,8 @@
         <java.version>1.8</java.version>
         <hutool.version>5.8.11</hutool.version>
         <lombok.version>1.18.28</lombok.version>
+        <antlr.version>4.9.3</antlr.version>
+        <druid.version>1.1.12</druid.version>
     </properties>
 
     <dependencyManagement>
@@ -36,6 +41,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
