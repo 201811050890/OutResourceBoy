@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zhengkai.blog.csdn.net
@@ -116,7 +117,4 @@ public class SysMenuPO {
      * 备注
      */
     private String remark;
-
-    
-    
 }

@@ -20,7 +20,9 @@ public class MenuController {
 
     @GetMapping("/list")
     public RespBean menuList(){
-        List<MenuVO> menuVOList = menuService.listMenu();
+        List<MenuVO> menuVOList = null;
+        menuVOList = menuService.listMenu();
+
         return RespBean.success(menuVOList);
     }
 

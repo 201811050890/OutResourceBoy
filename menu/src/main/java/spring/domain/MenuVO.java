@@ -1,8 +1,11 @@
 package spring.domain;
 
+import cn.hutool.core.annotation.Alias;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 /**
@@ -12,14 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MenuVO {
+    @Alias("menuId")
     private Long id;
     private Long parentId;
     private String menuName;
     private String menuType;
     private String path;
-    private String componentPath;
+    private String component;
     private Integer orderNum;
     private String icon;
     private String perms;
-    private MenuVO childMenu;
+    private List<MenuVO> childMenu;
 }
