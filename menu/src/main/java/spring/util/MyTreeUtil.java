@@ -6,8 +6,6 @@ import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
-import spring.domain.MenuVO;
 import spring.domain.SysMenuPO;
 
 import java.util.List;
@@ -39,7 +37,6 @@ public class MyTreeUtil {
         List<T> parentNodeList = dataList.stream().filter(
                 item -> ObjectUtil.equals(ReflectUtil.getFieldValue(item, parentFiled).toString(), String.valueOf(rootParentVal))
         ).collect(Collectors.toList());
-        System.out.println(JSONUtil.toJsonStr(parentNodeList));
         // 2、父节点列表排序
         List<T> sortedList = ListUtil.sortByProperty(parentNodeList, orderByField);
         // 3、构建树形结构的逻辑...
@@ -47,8 +44,6 @@ public class MyTreeUtil {
         return sortedList;
 
     }
-
-
 
     /**
      *
@@ -59,13 +54,9 @@ public class MyTreeUtil {
      */
     private static <T> void getChildTree(List<T> sortedList, List<T> dataList,  String rootField, String parentFiled, String orderByField, String childField) {
         for (T exportOrganization : sortedList) {
-            System.out.println(JSONUtil.toJsonStr(exportOrganization));
-            System.out.println(ReflectUtil.getFieldValue(dataList.get(0), parentFiled));
-            System.out.println(ReflectUtil.getFieldValue(exportOrganization, rootField));
             List<T> subList = dataList.stream().filter(o -> Objects.nonNull(ReflectUtil.getFieldValue(o, parentFiled)))
                     .filter(o -> ObjectUtil.equals(StrUtil.toString(ReflectUtil.getFieldValue(o, parentFiled)), StrUtil.toString(ReflectUtil.getFieldValue(exportOrganization, rootField))))
                     .collect(Collectors.toList());
-            System.out.println(JSONUtil.toJsonStr(subList));
             // 排序
             List<T> ts = ListUtil.sortByProperty(subList, orderByField);
             ReflectUtil.setFieldValue(exportOrganization, childField, ts);
@@ -75,6 +66,16 @@ public class MyTreeUtil {
         }
     }
 
+    /**
+     * hu-tool 的beanToList方法
+     * <p>
+     *     这里是将数据库实体类，转成VO
+     * </p>
+     * @param list 原始数据
+     * @param menuVOClass 要转类的Class对象
+     * @param <T> 泛型
+     * @return 转换后的List
+     */
     public static <T> List<T> beanToList(List<SysMenuPO> list, Class<T> menuVOClass) {
         return BeanUtil.copyToList(list, menuVOClass);
     }

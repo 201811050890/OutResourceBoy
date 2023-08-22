@@ -31,12 +31,10 @@ public class MenuServiceImpl implements IMenuService {
         Integer roleId = 2;
         // 2、根据角色id关联查询出所有的菜单信息
         List<SysMenuPO> list = menuMapper.listAllMapper(roleId);
-
         // 3、构造树结构
         List<MenuVO> menuVOList = MyTreeUtil.beanToList(list, MenuVO.class);
         System.out.println(JSONUtil.toJsonStr(menuVOList));
         List<MenuVO> resMenu = MyTreeUtil.buildTree(menuVOList, "menuId", "parentId", 0, "orderNum", "childMenu");
-//        System.out.println(JSONUtil.toJsonPrettyStr(list1));
         return resMenu;
     }
 }
