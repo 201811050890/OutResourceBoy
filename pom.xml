@@ -7,7 +7,7 @@
         <module>opLog</module>
 <!--        <module>sqlBlood</module>-->
         <module>my-login</module>
-        <module>document</module>
+<!--        <module>document</module>-->
         <module>menu</module>
     </modules>
     <parent>
@@ -44,13 +44,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-            </dependency>
-
-            <!-- druid -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
             </dependency>
 
             <!-- mp -->
