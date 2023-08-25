@@ -1,4 +1,4 @@
-package my.util;
+package my.redis;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.DeserializationFeature;

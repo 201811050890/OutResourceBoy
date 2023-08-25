@@ -1,4 +1,4 @@
-package my.util;
+package my.constant;
 
 /**
  * @author OutResource Boy
