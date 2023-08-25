@@ -1,4 +1,4 @@
-package my.util;
+package my.redis;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;

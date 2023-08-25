@@ -4,14 +4,16 @@ import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.json.JSONUtil;
+import my.constant.CacheConstant;
+import my.constant.TokenConstant;
 import my.domain.LoginEncryptBO;
 import my.domain.MyUser;
+import my.redis.MyRedisUtil;
 import my.util.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import result.RespBean;
 import result.RespBeanEnum;
-import result.ServiceException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
