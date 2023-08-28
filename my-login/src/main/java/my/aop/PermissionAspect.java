@@ -45,43 +45,44 @@ public class PermissionAspect {
     /**
      * 判断用户是否有权限
      * <p>
-     *     这里用户是否登录未做判断
+     * 这里用户是否登录未做判断
      * </p>
+     *
      * @param joinPoint 切点
      */
     @Before(value = "permissionPoint()")
     public void hasPermission(JoinPoint joinPoint) {
-        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         Permission permission = method.getAnnotation(Permission.class);
         String[] roles = permission.roles();
         ArrayList<String> permRoles = ListUtil.toList(roles);
-        if (CollectionUtil.isEmpty(permRoles)){
+        if (CollectionUtil.isEmpty(permRoles)) {
             return;
         }
         MyUser currentUser = LoginUserUtils.getCurrentUser();
         List<String> loginUserRoles = currentUser.getRoleList();
-
         RoleConcatConstant concat = permission.concat();
         judgeRoles(concat, permRoles, loginUserRoles);
     }
 
     /**
      * 判断权限
-     * @param concat 权限之间的连接情况【OR或AND】
-     * @param permRoles 当前方法所需的Role
+     *
+     * @param concat         权限之间的连接情况【OR或AND】
+     * @param permRoles      当前方法所需的Role
      * @param loginUserRoles 当前登录用户拥有的Role
      */
     private void judgeRoles(RoleConcatConstant concat, ArrayList<String> permRoles, List<String> loginUserRoles) {
         HashSet<String> permRoleSet = new HashSet<>(permRoles);
-        if (ObjectUtil.equal(concat, RoleConcatConstant.OR)){
+        if (ObjectUtil.equal(concat, RoleConcatConstant.OR)) {
             boolean b = permRoleSet.stream().anyMatch(loginUserRoles::contains);
-            if (!b){
+            if (!b) {
                 throw new ServiceException(RespBean.error(RespBeanEnum.NO_ROLES));
             }
-        }else if(ObjectUtil.equal(concat, RoleConcatConstant.AND)){
+        } else if (ObjectUtil.equal(concat, RoleConcatConstant.AND)) {
             boolean b = new HashSet<>(loginUserRoles).containsAll(permRoleSet);
-            if (!b){
+            if (!b) {
                 throw new ServiceException(RespBean.error(RespBeanEnum.NO_ROLES));
             }
         }
