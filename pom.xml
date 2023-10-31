@@ -5,10 +5,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>opLog</module>
-<!--        <module>sqlBlood</module>-->
+        <module>sqlBlood</module>
         <module>my-login</module>
 <!--        <module>document</module>-->
         <module>menu</module>
+        <module>my-easyexcel</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
